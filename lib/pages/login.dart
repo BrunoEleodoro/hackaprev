@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hackaprev/pages/basic_information.dart';
+import 'package:hackaprev/pages/home.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -35,19 +36,14 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
-                    height: 130,
+                    height: 100,
                   ),
-                  // Image.asset(
-                  //   'assets/logo.png',
-                  //   width: 120,
-                  // ),
                   Container(
-                    width: 150,
+                    width: 250,
                     height: 150,
                     decoration: BoxDecoration(
-                        shape: BoxShape.circle,
+                        // shape: BoxShape.circle,
                         image: DecorationImage(
-                            fit: BoxFit.cover,
                             image: AssetImage('assets/hack-a-prev-logo.jpg'))),
                   ),
                   SizedBox(
@@ -61,7 +57,6 @@ class _LoginPageState extends State<LoginPage> {
                       children: <Widget>[
                         TextFormField(
                           cursorColor: Colors.grey,
-                          style: TextStyle(color: Colors.grey),
                           keyboardType: TextInputType.text,
                           decoration: InputDecoration(
                               enabledBorder: new UnderlineInputBorder(
@@ -81,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         TextFormField(
                           cursorColor: Colors.grey,
-                          style: TextStyle(color: Colors.grey),
                           obscureText: true,
                           decoration: InputDecoration(
                               enabledBorder: new UnderlineInputBorder(
@@ -102,10 +96,10 @@ class _LoginPageState extends State<LoginPage> {
                         MaterialButton(
                           minWidth: double.maxFinite,
                           onPressed: () {
-                            // Navigator.pushReplacement(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) => HomePage()));
+                            Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePageScreen()));
                           },
                           child: Text('ENTRAR'),
                           color: Color(0XFF1BABFC),

@@ -7,22 +7,42 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:hackaprev/pages/home.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class BasicInformation extends StatefulWidget {
+class EscolhaSeuPerfilScreen extends StatefulWidget {
   @override
-  _BasicInformationState createState() => _BasicInformationState();
+  _EscolhaSeuPerfilScreenState createState() => _EscolhaSeuPerfilScreenState();
 }
 
-class _BasicInformationState extends State<BasicInformation> {
-  TextEditingController cpfController =
-      new MaskedTextController(mask: '000.000.000-00');
-  TextEditingController dataController =
-      new MaskedTextController(mask: '00/00/0000');
-  TextEditingController telefoneController =
-      new MaskedTextController(mask: '(00) 00000-0000');
+class _EscolhaSeuPerfilScreenState extends State<EscolhaSeuPerfilScreen> {
   bool isLoading = false;
-
+  List perfis = [
+    {
+      'title': 'Conservador',
+      'image': 'assets/image-16.png',
+      'description':
+          "Esse tipo de investidor prioriza a segurança em suas aplicações. Em sua diversificação de investimentos, produtos de baixo risco"
+    },
+    {
+      'title': 'Moderado',
+      'image': 'assets/image-17.png',
+      'description':
+          "Esse investidor está entre os conservadores e os arrojados. Mas já possui tolerância a riscos de longo prazo."
+    },
+    {
+      'title': 'Ousado',
+      'image': 'assets/image-15.png',
+      'description':
+          "É um investidor que tem a segurança da renda fixa, mas também aplica parte de seus recursos em renda variável, buscando retornos acima da média do mercado."
+    },
+    {
+      'title': 'ExtremeCrazy',
+      'image': 'assets/Group-1.png',
+      'description':
+          "Ele entende que as perdas a curto prazo são momentâneas e necessárias para aproveitar lucros mais altos a longo prazo."
+    },
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,85 +61,101 @@ class _BasicInformationState extends State<BasicInformation> {
                             image: DecorationImage(
                                 image: AssetImage('assets/pattern1.png'),
                                 fit: BoxFit.fill))),
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Text(
+                      'Escolha seu tipo perfil',
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ),
+                    Container(
+                        width: double.maxFinite,
+                        height: 400,
+                        margin: EdgeInsets.all(16),
+                        child: Container(
+                          width: double.maxFinite,
+                          margin: EdgeInsets.only(bottom: 0),
+                          // height: 340,
+                          child: PageView.builder(
+                              itemCount: perfis.length,
+                              itemBuilder: (context, index) {
+                                var perfil = perfis[index];
+                                return CardItem(
+                                  asset: perfil['image'],
+                                  description: perfil['description'],
+                                  title: perfil['title'],
+                                );
+                              },
+                              controller: PageController(
+                                viewportFraction: 0.8,
+                                initialPage: 0,
+                              )),
+                        ))
                     // Image.asset(
                     //   'assets/logo.png',
                     //   width: 120,
                     // ),
-                    Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 20,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                                labelText: 'Nome',
-                                labelStyle: TextStyle(),
-                                prefixIcon: Icon(
-                                  Icons.account_circle,
-                                )),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            controller: cpfController,
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: InputDecoration(
-                                labelText: 'CPF',
-                                labelStyle: TextStyle(),
-                                prefixIcon: Icon(
-                                  Icons.account_circle,
-                                )),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            keyboardType: TextInputType.visiblePassword,
-                            decoration: InputDecoration(
-                                labelText: 'RG',
-                                labelStyle: TextStyle(),
-                                prefixIcon: Icon(
-                                  Icons.account_circle,
-                                )),
-                          ),
-                          SizedBox(
-                            height: 10,
-                          ),
-                          TextFormField(
-                            controller: dataController,
-                            keyboardType: TextInputType.number,
-                            decoration: InputDecoration(
-                                labelText: 'Data de Nascimento',
-                                labelStyle: TextStyle(),
-                                prefixIcon: Icon(
-                                  Icons.calendar_today,
-                                )),
-                          ),
-                        ],
-                      ),
-                    )
                   ]))),
-      Align(
-        alignment: Alignment.bottomRight,
-        child: Container(
-          margin: EdgeInsets.only(left: 20, right: 20, bottom: 20),
-          child: MaterialButton(
-            color: Color(0XFF63ABFF),
-            onPressed: () {
-              // getInformationFromGrid();
-            },
-            child: Text(
-              'Próximo >',
-              style: TextStyle(),
-            ),
-            minWidth: 150,
-          ),
-        ),
-      )
     ]));
+  }
+}
+
+class CardItem extends StatelessWidget {
+  var asset;
+  var title;
+  var description;
+  CardItem({this.asset, this.title, this.description});
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 5,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height: 20,
+            ),
+            Image.asset(asset),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Text(
+                title,
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(description, style: TextStyle(fontSize: 16)),
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Center(
+              child: MaterialButton(
+                color: Color(0XFF63ABFF),
+                onPressed: () {
+                  // getInformationFromGrid();
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => HomePageScreen()));
+                },
+                child: Text('Próximo >', style: TextStyle(color: Colors.white)),
+                minWidth: 150,
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 }

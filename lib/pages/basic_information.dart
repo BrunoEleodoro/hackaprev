@@ -7,6 +7,7 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_masked_text/flutter_masked_text.dart';
+import 'package:hackaprev/pages/escolha_seu_perfil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class BasicInformation extends StatefulWidget {
@@ -71,7 +72,7 @@ class _BasicInformationState extends State<BasicInformation> {
                                 labelText: 'CPF',
                                 labelStyle: TextStyle(),
                                 prefixIcon: Icon(
-                                  Icons.account_circle,
+                                  Icons.insert_drive_file,
                                 )),
                           ),
                           SizedBox(
@@ -83,7 +84,7 @@ class _BasicInformationState extends State<BasicInformation> {
                                 labelText: 'RG',
                                 labelStyle: TextStyle(),
                                 prefixIcon: Icon(
-                                  Icons.account_circle,
+                                  Icons.insert_drive_file,
                                 )),
                           ),
                           SizedBox(
@@ -111,6 +112,10 @@ class _BasicInformationState extends State<BasicInformation> {
             color: Color(0XFF63ABFF),
             onPressed: () {
               // getInformationFromGrid();
+              Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => EscolhaSeuPerfilScreen()));
             },
             child: Text(
               'Próximo >',
