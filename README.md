@@ -41,7 +41,7 @@ O EiSayPrevé uma solução para o jovem que quer investir no futuro, seja para 
 
 ## 📝 Licença
 
-Copyright © 2020 HackBMG<br />
+Copyright © 2020 HackAPrev<br />
 
 ***
 
