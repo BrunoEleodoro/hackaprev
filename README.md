@@ -17,6 +17,10 @@ O EiSayPrevé uma solução para o jovem que quer investir no futuro, seja para 
 	<li>Frontend feito em Flutter, <a href="https://brunoeleodoro.github.io/hackaprev/" target="_blank">Link solucao</a></li>
 </ul>
 
+## DIAGRAMA
+
+<img src="/assets/HackAPrev.png" />
+
 ## ✍ Autores
 
 👤 **Antonio Carlos Lima**
